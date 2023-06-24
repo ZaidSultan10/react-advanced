@@ -31,8 +31,8 @@ function App() {
         <button onClick={handleSubmit}>Submit</button>
       </div>
       <div>
-        <Jokes setError = {setError} />
-        <Stories setError = {setError} />
+        <Jokes setError = {setError} error={error} />
+        <Stories setError = {setError} error={error} />
       </div>
     </div>
   );

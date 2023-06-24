@@ -1,25 +1,21 @@
 import React, { useEffect, useState } from 'react'
+import { useFetch } from './useFetch'
 
-const Jokes = ({setError}) => {
-    const [getData, setGetData] = useState(null)
-    useEffect(() => {
-        fetch('https://official-joke-api.appspot.com/jokes/random')
-        .then((res) => {
-            return res.json()
-        })
-        .then((json) => {
-            setGetData(json)
-            return json
-        })
-        .catch(err=> {
-            setError(err.message)
-        })
-    }, [])
+const Jokes = ({setError, error}) => {
+  const jokes = useFetch(`https://official-joke-api.appspot.com/jokes/random`,null)
+  let jokeData = null
+  if(jokes && jokes.errorMessage){
+    setError(jokes.errorMessage)
+  }else{
+    jokeData = jokes && jokes.data
+    setError('')
+  }
   return (
     <div>
         <h3>Joke</h3>
-        <p>{getData?.setup}</p>
-        <small>{getData?.punchline}</small>
+        {error && <h4 style={{color:'red'}}>{error}</h4>}
+        <p>{jokeData?.setup}</p>
+        <small>{jokeData?.punchline}</small>
     </div>
   )
 }
