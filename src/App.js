@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
 import './App.css';
+import Jokes from './Jokes.jsx';
+import Stories from './Stories';
 
 function App() {
   const [userQuery, setUserQuery] = useState('')
   const [userResult, setUserResult] = useState('')
+  const [ error, setError ] = useState('')
 
   const handleChange = (e) => {
     e.preventDefault()
@@ -26,6 +29,10 @@ function App() {
       <div className='form'>
         <input className='form__input' onKeyPress = {handleKeyPress} onChange={handleChange} value={userQuery} />
         <button onClick={handleSubmit}>Submit</button>
+      </div>
+      <div>
+        <Jokes setError = {setError} />
+        <Stories setError = {setError} />
       </div>
     </div>
   );
