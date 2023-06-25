@@ -16,10 +16,15 @@ const Tasks = () => {
 
     const handleCompleteTask = (task) => {
         handleSetState(setCompletedTasks, completedTasks, task)
+        setTasks(tasks.filter(tsk => tsk !== task))
     }
 
     const handleSetState = (func, state, value) => {
         return func([...state, value])
+    }
+
+    const deleteTask = (task) => {
+        setCompletedTasks(completedTasks.filter(compTask => compTask !== task))
     }
   return (
     <div>
@@ -27,7 +32,7 @@ const Tasks = () => {
         <button disabled = {!taskText} onClick = {handleTaskSubmit}>{`Add Task`}</button>
         <div><h4>{`Todo List`}</h4></div>
         <div>
-            {tasks && tasks.length > 0 && tasks.filter(tsk => !completedTasks.includes(tsk)).map((task, i) => (
+            {tasks && tasks.length > 0 && tasks.map((task, i) => (
                 <div key={i}>
                     <p>{task}</p>
                     <button onClick={() => handleCompleteTask(task)}>complete</button>
@@ -40,6 +45,7 @@ const Tasks = () => {
             {completedTasks && completedTasks.length > 0 && completedTasks.map((compTask , j) => (
                 <div key={j}>
                     <p style={{color:'green'}}>{`${compTask} - completed`}</p>
+                    <button onClick={() => deleteTask(compTask)}>{`Clear Task`}</button>
                 </div>
             ))}
         </div>
