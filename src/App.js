@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import './App.css';
 import Jokes from './Jokes.jsx';
 import Stories from './Stories';
+import Tasks from './Tasks';
 
 function App() {
   const [userQuery, setUserQuery] = useState('')
@@ -33,6 +34,9 @@ function App() {
       <div>
         <Jokes setError = {setError} error={error} />
         <Stories setError = {setError} error={error} />
+      </div>
+      <div>
+        <Tasks />
       </div>
     </div>
   );
