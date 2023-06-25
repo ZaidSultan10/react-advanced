@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { useFetch } from './useFetch'
 
 const Stories = ({setError}) => {
@@ -16,7 +16,7 @@ const Stories = ({setError}) => {
         {
             storiesData && storiesData.length > 0 && storiesData.map((story) => (
                 <div key={story.id}>
-                    <a href={story.url} target='_blank'>{story.title}</a>
+                    <a href={story.url} target='_blank' rel="noreferrer">{story.title}</a>
                     <p>{story.by} - {new Date(story.time * 1000).toLocaleString()}</p>
                 </div>
             ))

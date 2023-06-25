@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export const useFetch = (url, initialValue) => {
     const [result, setResult] = useState(initialValue)
@@ -11,6 +11,6 @@ export const useFetch = (url, initialValue) => {
         }).catch(err => {
             setResult({errorMessage : err.message})
         })
-    }, [])
+    }, [url])
     return result
 }
