@@ -8,12 +8,14 @@ const Jokes = ({setError, error}) => {
     setError(jokes.errorMessage)
   }else{
     jokeData = jokes && jokes.data
-    setError('')
+    if(error){
+        setError('')
+    }
   }
   return (
     <div>
         <h3>Joke</h3>
-        {error && <h4 style={{color:'red'}}>{error}</h4>}
+        {error && <h4 style={{color:'red'}}>{`File Jokes.jsx - Error is -> ${error}`}</h4>}
         <p>{jokeData?.setup}</p>
         <small>{jokeData?.punchline}</small>
     </div>

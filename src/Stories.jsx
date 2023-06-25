@@ -1,18 +1,21 @@
 import React from 'react'
 import { useFetch } from './useFetch'
 
-const Stories = ({setError}) => {
+const Stories = ({setError, error}) => {
     const stories = useFetch(`https://news-proxy-230704.appspot.com/topstories`,null)
     let storiesData = null
     if(stories && stories.errorMessage){
       setError(stories.errorMessage)
     }else{
       storiesData = stories && stories.data
-      setError('')
+      if(error){
+        setError('')
+      }
     }
   return (
     <div>
         <h3>Stories</h3>
+        {error && <h4 style={{color:'red'}}>{`File Stories.jsx - Error is -> ${error}`}</h4>}
         {
             storiesData && storiesData.length > 0 && storiesData.map((story) => (
                 <div key={story.id}>

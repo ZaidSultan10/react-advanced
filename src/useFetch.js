@@ -7,7 +7,6 @@ export const useFetch = (url, initialValue) => {
             return resp.json()
         }).then(data => {
             setResult({data : data})
-            return data
         }).catch(err => {
             setResult({errorMessage : err.message})
         })
