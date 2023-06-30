@@ -3,6 +3,7 @@ import './App.css';
 import Jokes from './Jokes.jsx';
 import Stories from './Stories';
 import Tasks from './Tasks';
+import Gallery from './Gallery';
 
 function App() {
   const [userQuery, setUserQuery] = useState('')
@@ -35,6 +36,9 @@ function App() {
         <Jokes setError = {setError} error={error} />
         <Stories setError = {setError} error={error} />
       </div>
+      <hr />
+      <Gallery />
+      <hr />
       <div>
         <Tasks />
       </div>
