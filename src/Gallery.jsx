@@ -15,20 +15,15 @@ const Gallery = () => {
     }
     useEffect(() => {
         setInterval(()=> {
-            setIndex(index + 1)
-            if(index === PICTURES.length - 1){
-                setIndex(0)
-            }
+            setIndex((current) => {
+                console.log('current === ',current,index)
+                return current === PICTURES.length - 1 ? 0 : current + 1});
         },intervals)
-    }, [index])
+    }, [])
+    console.log('index === ',index)
   return (
     <div>
         <div className='gallery'>
-            {/* {PICTURES && PICTURES.length > 0 && PICTURES.map(picture => {
-                return (
-                    <img width={200} height={180} src={picture.image} alt={`${picture.image}`} />
-                )
-            })} */}
             <img width={200} height={180} src={PICTURES[index].image} alt={`${PICTURES[index].image}`} />
         </div>
         <div className='gallery_speed'>
