@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { PICTURES } from './pictures'
+import moment from 'moment'
 
 const Gallery = () => {
     const [index, setIndex] = useState(0)
@@ -15,12 +16,11 @@ const Gallery = () => {
     }
     useEffect(() => {
         setInterval(()=> {
-            setIndex((current) => {
-                console.log('current === ',current,index)
-                return current === PICTURES.length - 1 ? 0 : current + 1});
+            setIndex((current) => current === PICTURES.length - 1 ? 0 : current + 1)
         },intervals)
     }, [])
-    console.log('index === ',index)
+
+    useEffect(() => {setIndex(0)},[intervals])
   return (
     <div>
         <div className='gallery'>
