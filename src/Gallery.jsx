@@ -15,12 +15,13 @@ const Gallery = () => {
         setIntervals(timer * 1000)
     }
     useEffect(() => {
-        setInterval(()=> {
+        const intervalSetter = setInterval(()=> {
             setIndex((current) => current === PICTURES.length - 1 ? 0 : current + 1)
         },intervals)
-    }, [])
 
-    useEffect(() => {setIndex(0)},[intervals])
+        return () => {clearInterval(intervalSetter)}
+    }, [intervals])
+    
   return (
     <div>
         <div className='gallery'>
